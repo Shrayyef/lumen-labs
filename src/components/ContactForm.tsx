@@ -37,7 +37,7 @@ export function ContactForm() {
         Message
         <textarea name="message" rows={6} required />
       </label>
-      <button type="submit" className="btn btn--primary">
+      <button type="submit" className="btn btn--ink">
         Send message
       </button>
       {submitted ? (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LetterLink } from "@/components/LetterLink";
 import { products } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -16,7 +17,7 @@ export function SiteFooter() {
             <ul>
               {site.nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
+                  <LetterLink href={item.href} label={item.label} />
                 </li>
               ))}
             </ul>
@@ -26,7 +27,10 @@ export function SiteFooter() {
             <ul>
               {products.map((product) => (
                 <li key={product.slug}>
-                  <Link href={`/products/${product.slug}`}>{product.name}</Link>
+                  <LetterLink
+                    href={`/products/${product.slug}`}
+                    label={product.name}
+                  />
                 </li>
               ))}
             </ul>

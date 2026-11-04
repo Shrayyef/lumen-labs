@@ -74,7 +74,7 @@ export default function AboutPage() {
             product build.
           </p>
           <div style={{ marginTop: "0.35rem" }}>
-            <Link href="/contact" className="btn btn--primary">
+            <Link href="/contact" className="btn btn--ink">
               Get in touch
             </Link>
           </div>

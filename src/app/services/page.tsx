@@ -67,7 +67,7 @@ export default function ServicesPage() {
             build path, stack, and milestones.
           </p>
           <div style={{ marginTop: "0.35rem" }}>
-            <Link href="/contact" className="btn btn--primary">
+            <Link href="/contact" className="btn btn--ink">
               Start a conversation
             </Link>
           </div>

@@ -28,7 +28,7 @@ export const products: Product[] = [
     ],
     stack: ["React Native", "Next.js", "Node.js", "In-app purchases"],
     platforms: ["Web", "iOS", "Android"],
-    accent: "#1F7A6B",
+    accent: "#5F6A4D",
     atmosphere: "Soft classroom light over a calm study desk",
   },
   {
@@ -47,7 +47,7 @@ export const products: Product[] = [
     ],
     stack: ["React Native", "Next.js", "Fastify", "Prisma", "BullMQ"],
     platforms: ["iOS", "Android", "Web"],
-    accent: "#C45C26",
+    accent: "#7A6548",
     atmosphere: "Open garage bay with tools and a waiting service lane",
   },
   {
@@ -66,7 +66,7 @@ export const products: Product[] = [
     ],
     stack: ["Swift", "SwiftUI", "Kotlin", "Jetpack Compose", "FFmpeg"],
     platforms: ["iPhone", "Android", "Mac"],
-    accent: "#2F5D8C",
+    accent: "#4A5C68",
     atmosphere: "Quiet desk with a laptop converting local media files",
   },
   {
@@ -85,7 +85,7 @@ export const products: Product[] = [
     ],
     stack: ["FastAPI", "LLM", "SSE", "SwiftUI", "Jetpack Compose"],
     platforms: ["Web", "iOS", "Android"],
-    accent: "#B45309",
+    accent: "#6B5B3E",
     atmosphere: "City evening light over phone shopping and price cards",
   },
 ];

@@ -79,6 +79,13 @@ textarea {
   right: 0;
   z-index: 40;
   pointer-events: none;
+  transition: opacity 220ms ease, visibility 220ms ease;
+}
+
+.site-header--veiled {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .site-header__inner {
@@ -232,7 +239,7 @@ textarea {
 .page-transition__veil {
   position: fixed;
   inset: 0;
-  z-index: 30;
+  z-index: 50;
   pointer-events: none;
   background: var(--bg-deep);
 }

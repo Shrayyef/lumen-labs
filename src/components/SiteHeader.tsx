@@ -1,10 +1,19 @@
+"use client";
+
 import Link from "next/link";
 import { LetterLink } from "@/components/LetterLink";
+import { useTransitionChrome } from "@/components/TransitionChrome";
 import { site } from "@/lib/site";
 
 export function SiteHeader() {
+  const { veiling } = useTransitionChrome();
+
   return (
-    <header className="site-header">
+    <header
+      className={`site-header${veiling ? " site-header--veiled" : ""}`}
+      aria-hidden={veiling || undefined}
+      inert={veiling || undefined}
+    >
       <div className="site-header__inner">
         <Link href="/" className="site-logo" aria-label={`${site.name} home`}>
           <span className="site-logo__text">

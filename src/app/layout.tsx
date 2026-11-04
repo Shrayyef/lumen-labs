@@ -3,6 +3,7 @@ import { Instrument_Serif, Manrope } from "next/font/google";
 import { PageTransition } from "@/components/PageTransition";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { TransitionChromeProvider } from "@/components/TransitionChrome";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -31,14 +32,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${instrumentSerif.variable} ${manrope.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased">
-        <SiteHeader />
-        <main className="flex-1">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <SiteFooter />
+        <TransitionChromeProvider>
+          <SiteHeader />
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <SiteFooter />
+        </TransitionChromeProvider>
       </body>
     </html>
   );

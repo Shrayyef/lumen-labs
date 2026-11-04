@@ -133,7 +133,7 @@ textarea {
   display: none;
 }
 
-/* Letter-stagger links (Casa Momo–inspired) */
+/* Link Roll — Casa Momo letter swap (duration .7 / stagger .01 / ease .52,0,0,1) */
 .letter-link {
   position: relative;
   display: inline-flex;
@@ -154,40 +154,33 @@ textarea {
 }
 
 .letter-link__track {
-  position: relative;
-  display: block;
-  height: 1.15em;
-  overflow: hidden;
-}
-
-.letter-link__row {
-  display: flex;
+  display: inline-flex;
   white-space: nowrap;
-  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  vertical-align: top;
 }
 
-.letter-link__row--base {
-  transform: translateY(0);
-}
-
-.letter-link__row--hover {
-  position: absolute;
-  inset: 0 auto auto 0;
-  transform: translateY(110%);
-}
-
-.letter-link:hover .letter-link__row--base,
-.letter-link:focus-visible .letter-link__row--base {
-  transform: translateY(-110%);
-}
-
-.letter-link:hover .letter-link__row--hover,
-.letter-link:focus-visible .letter-link__row--hover {
-  transform: translateY(0);
-}
-
-.letter-link__char {
+.letter-link__slot {
+  position: relative;
   display: inline-block;
+  overflow: hidden;
+  white-space: pre;
+  vertical-align: top;
+}
+
+.letter-link__ghost {
+  visibility: hidden;
+  display: inline-block;
+  white-space: pre;
+}
+
+.letter-link__glyph {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  white-space: pre;
+  will-change: transform;
 }
 
 .site-nav__link {
@@ -210,8 +203,38 @@ textarea {
   border-radius: var(--radius);
 }
 
-.site-header__cta .letter-link__row--hover {
-  color: var(--on-deep);
+/* Word mask reveal — Casa text component */
+.word-reveal {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.28em;
+  margin: 0;
+  padding: 0;
+}
+
+.word-reveal__mask {
+  display: inline-flex;
+  overflow: hidden;
+  padding: 0.06em 0.06em 0.12em;
+  margin: 0 -0.06em -0.12em;
+}
+
+.word-reveal__word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.page-transition {
+  position: relative;
+}
+
+.page-transition__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  background: var(--bg-deep);
 }
 
 /* —— Footer —— */
@@ -378,19 +401,15 @@ textarea {
 }
 
 .hero__brand-line {
-  display: block;
+  display: flex;
   overflow: hidden;
 }
 
-.stagger-text {
-  display: inline-flex;
-}
-
-.stagger-text__char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(0.55em);
-  animation: char-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.hero__brand-line .word-reveal__mask {
+  padding-top: 0.12em;
+  margin-top: -0.12em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 
 .hero__lede-wrap {
@@ -404,16 +423,14 @@ textarea {
   color: rgba(241, 238, 230, 0.78);
   font-size: clamp(1.05rem, 2.2vw, 1.25rem);
   line-height: 1.55;
-  opacity: 0;
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 420ms both;
+  font-family: var(--font-body), sans-serif;
+  font-style: normal;
 }
 
 .hero__ctas {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  opacity: 0;
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 560ms both;
 }
 
 .hero__scroll-hint {
@@ -422,8 +439,6 @@ textarea {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(241, 238, 230, 0.42);
-  opacity: 0;
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 700ms both;
 }
 
 .btn {
@@ -848,37 +863,6 @@ textarea {
   max-width: 40rem;
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-}
-
-.reveal.is-visible {
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes char-rise {
-  from {
-    opacity: 0;
-    transform: translateY(0.55em);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @keyframes glow-drift {
   from {
     transform: translate3d(0, 0, 0) scale(1);
@@ -949,21 +933,13 @@ textarea {
     scroll-behavior: auto;
   }
 
-  .stagger-text__char,
-  .hero__lede,
-  .hero__ctas,
-  .hero__scroll-hint,
   .hero-visual__glow,
-  .reveal,
-  .letter-link__row,
-  .letter-link__char {
+  .page-transition__veil {
     animation: none !important;
     transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
   }
 
-  .letter-link__row--hover {
+  .page-transition__veil {
     display: none;
   }
 }

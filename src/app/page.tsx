@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { HeroBrand } from "@/components/HeroBrand";
 import { HeroVisual } from "@/components/HeroVisual";
 import { ProductAtmosphere } from "@/components/ProductAtmosphere";
 import { Reveal } from "@/components/Reveal";
-import { StaggerText } from "@/components/StaggerText";
+import { ScrollCopy } from "@/components/ScrollCopy";
+import { WordReveal } from "@/components/WordReveal";
 import { products } from "@/lib/products";
 import { site } from "@/lib/site";
+import { textRevealBody } from "@/lib/motion";
 
 const philosophy = [
   {
@@ -30,28 +33,31 @@ export default function HomePage() {
       <section className="hero" aria-label="Hero">
         <HeroVisual />
         <div className="hero__content">
-          <h1 className="hero__brand">
-            <span className="hero__brand-line">
-              <StaggerText text="Lumen" delayMs={40} staggerMs={42} />
-            </span>
-            <span className="hero__brand-line">
-              <StaggerText text="Labs" delayMs={220} staggerMs={42} />
-            </span>
-          </h1>
+          <HeroBrand />
           <div className="hero__lede-wrap">
-            <p className="hero__lede">
-              Between quiet craft and durable systems, a studio that ships
-              products people return to every day.
-            </p>
-            <div className="hero__ctas">
+            <WordReveal
+              text="Between quiet craft and durable systems, a studio that ships products people return to every day."
+              as="p"
+              className="hero__lede"
+              immediate
+              fromY={textRevealBody.fromY}
+              rotateFrom={textRevealBody.rotateFrom}
+              stagger={textRevealBody.stagger}
+              delay={0.55}
+              duration={textRevealBody.duration}
+              ease={textRevealBody.ease}
+            />
+            <Reveal className="hero__ctas" delay={0.85} y={24}>
               <Link href="/products" className="btn btn--primary">
                 Explore products
               </Link>
               <Link href="/contact" className="btn btn--ghost">
                 Talk to us
               </Link>
-            </div>
-            <p className="hero__scroll-hint">Scroll · Four products</p>
+            </Reveal>
+            <Reveal delay={1} y={16}>
+              <p className="hero__scroll-hint">Scroll · Four products</p>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -60,22 +66,43 @@ export default function HomePage() {
         <div className="shell">
           <Reveal className="section__head">
             <p className="section__eyebrow">Suite</p>
-            <h2 className="section__title">Four products. One studio.</h2>
-            <p className="section__copy">
-              Lumen Labs designs and operates a focused suite — learning,
-              mobility, privacy, and commerce — built as durable product
-              platforms.
-            </p>
+            <WordReveal
+              text="Four products. One studio."
+              as="h2"
+              className="section__title"
+              fromY={160}
+              stagger={0.08}
+            />
+            <WordReveal
+              text="Lumen Labs designs and operates a focused suite — learning, mobility, privacy, and commerce — built as durable product platforms."
+              as="p"
+              className="section__copy"
+              fromY={100}
+              stagger={0.02}
+              delay={0.15}
+              duration={0.9}
+            />
           </Reveal>
 
           <div className="product-list">
             {products.map((product, index) => (
-              <Reveal key={product.slug} as="article" className="product-row">
+              <Reveal
+                key={product.slug}
+                as="article"
+                className="product-row"
+                delay={index * 0.04}
+              >
                 <div className="product-row__meta">
                   <p className="product-row__index">
                     N°{String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="product-row__name">{product.name}</h3>
+                  <WordReveal
+                    text={product.name}
+                    as="h3"
+                    className="product-row__name"
+                    fromY={120}
+                    stagger={0.07}
+                  />
                   <p className="product-row__summary">{product.summary}</p>
                   <Link
                     href={`/products/${product.slug}`}
@@ -92,29 +119,49 @@ export default function HomePage() {
       </section>
 
       <section className="belief" aria-label="Belief">
-        <Reveal>
-          <p className="belief__text">
-            A product deserves as much care in the hand as it did on the
-            whiteboard.
-          </p>
-        </Reveal>
+        <ScrollCopy>
+          <WordReveal
+            text="A product deserves as much care in the hand as it did on the whiteboard."
+            as="p"
+            className="belief__text"
+            fromY={180}
+            stagger={0.06}
+            duration={1.1}
+          />
+        </ScrollCopy>
       </section>
 
       <section className="section section--tight" style={{ paddingTop: 0 }}>
         <div className="shell">
           <Reveal className="section__head">
             <p className="section__eyebrow">Philosophy</p>
-            <h2 className="section__title">How we build</h2>
+            <WordReveal
+              text="How we build"
+              as="h2"
+              className="section__title"
+              fromY={150}
+              stagger={0.09}
+            />
             <p className="section__copy">
               Boutique agency tone with product ownership — strategy, design,
               and engineering under one roof.
             </p>
           </Reveal>
           <div className="philosophy">
-            {philosophy.map((item) => (
-              <Reveal key={item.num} as="article" className="philosophy__item">
+            {philosophy.map((item, index) => (
+              <Reveal
+                key={item.num}
+                as="article"
+                className="philosophy__item"
+                delay={index * 0.08}
+              >
                 <p className="philosophy__num">{item.num}</p>
-                <h3>{item.title}</h3>
+                <WordReveal
+                  text={item.title}
+                  as="h3"
+                  fromY={100}
+                  stagger={0.08}
+                />
                 <p>{item.copy}</p>
               </Reveal>
             ))}
@@ -126,13 +173,19 @@ export default function HomePage() {
         <div className="shell split">
           <Reveal>
             <p className="section__eyebrow">Studio</p>
-            <h2 className="section__title">Agency craft. Product ownership.</h2>
+            <WordReveal
+              text="Agency craft. Product ownership."
+              as="h2"
+              className="section__title"
+              fromY={160}
+              stagger={0.07}
+            />
             <p className="section__copy" style={{ marginTop: "0.85rem" }}>
               We work as a multi-person product studio — shipping platforms that
               stay in production, not one-off launches.
             </p>
           </Reveal>
-          <Reveal>
+          <Reveal delay={0.12}>
             <div className="services-list">
               <article>
                 <h3>Product design & engineering</h3>
@@ -164,12 +217,25 @@ export default function HomePage() {
         <div className="shell">
           <Reveal className="section__head">
             <p className="section__eyebrow">Next</p>
-            <h2 className="section__title">Have a product in mind?</h2>
+            <WordReveal
+              text="Have a product in mind?"
+              as="h2"
+              className="section__title"
+              fromY={150}
+              stagger={0.08}
+            />
             <p className="section__copy">
               Tell us what you want to ship. We will map scope, stack, and a
               path to production.
             </p>
-            <div style={{ marginTop: "0.65rem", display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div
+              style={{
+                marginTop: "0.65rem",
+                display: "flex",
+                gap: "0.75rem",
+                flexWrap: "wrap",
+              }}
+            >
               <Link href="/contact" className="btn btn--ink">
                 Contact {site.name}
               </Link>

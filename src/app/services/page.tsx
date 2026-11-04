@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { WordReveal } from "@/components/WordReveal";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -40,11 +41,29 @@ export default function ServicesPage() {
     <div className="shell">
       <header className="page-hero">
         <p className="section__eyebrow">Services</p>
-        <h1>What we do</h1>
-        <p>
-          Lumen Labs pairs studio craft with product ownership — the same team
-          that ships our suite can help you design and build yours.
-        </p>
+        <WordReveal
+          text="What we do"
+          as="h1"
+          immediate
+          fromY={160}
+          stagger={0.1}
+          duration={1}
+        />
+        <WordReveal
+          text="Lumen Labs pairs studio craft with product ownership — the same team that ships our suite can help you design and build yours."
+          as="p"
+          immediate
+          fromY={100}
+          stagger={0.02}
+          delay={0.2}
+          duration={0.9}
+          style={{
+            marginTop: "1.15rem",
+            maxWidth: "36rem",
+            color: "var(--ink-soft)",
+            fontSize: "1.08rem",
+          }}
+        />
       </header>
 
       <section className="section" style={{ paddingTop: 0 }}>
